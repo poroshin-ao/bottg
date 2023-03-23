@@ -41,7 +41,7 @@ async def load_name(message: types.Message, state: FSMContext):
 
 
 async def load_robot(message: types.Message, state: FSMContext):
-    if message.text == 'Да':
+    if message.text.lower() == 'да':
         async with state.proxy() as data:
             data['robot'] = True
     await FSMAdmin.next()
@@ -67,12 +67,12 @@ async def load_otvet(message: types.Message, state: FSMContext):
 
 # @dp.message_handler(content_types = ['photo'], state = FSMAdmin.photo)
 async def it_needs(message: types.Message, state: FSMContext):
-    r = message.text
-    if r == 'Фото':
+    r = message.text.lower()
+    if r == 'фото':
         await FSMAdmin.photo.set()
         await message.reply("Вставте фото")
         return
-    if r == 'Видео':
+    if r == 'видео':
         await FSMAdmin.photo.set()
         await message.reply("Вставте видео")
         return
@@ -98,7 +98,7 @@ async def load_video(message: types.Message, state: FSMContext):
 
 
 async def load_open(message: types.Message, state: FSMContext):
-    if message.text == 'Да':
+    if message.text.lower() == 'да':
         async with state.proxy() as data:
             data['open'] = True
 
@@ -113,7 +113,7 @@ async def load_open(message: types.Message, state: FSMContext):
 
 async def check_podskaz(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
-        if message.text == 'Да':
+        if message.text.lower() == 'да':
             data['open_pods'] = False
 
             await FSMAdmin.podskaz.set()

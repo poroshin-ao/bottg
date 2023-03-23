@@ -25,12 +25,13 @@ async def open_pods(dp: Dispatcher, name: str):
 
 
 def schedule_add_jobs(name: dict, dat):
-    scheduler.add_job(open_quest, "date", run_date=dat, args=(dp, name))
+    dat1 = dat+timedelta(hours=-4)
+    scheduler.add_job(open_quest, "date", run_date=dat1, args=(dp, name))
 
 
 def schedule_add_jobs_pods(name: dict, dat):
     n = datetime.now()
-    dat1 = dat+timedelta(hours=20)
+    dat1 = dat+timedelta(hours=20-4)
     if dat1 <= n:
         set_open_pods(name)
     scheduler.add_job(open_pods, "date", run_date=dat1, args=(dp, name))

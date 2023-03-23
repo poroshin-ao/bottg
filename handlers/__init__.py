@@ -5,3 +5,4 @@ from handlers import registration
 from handlers import admin_menu
 from handlers import quests
 from handlers import pods
+from handlers import admin_delete
