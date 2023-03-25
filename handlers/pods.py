@@ -25,7 +25,7 @@ async def pods_menu(message: types.Message):
                 kb_pods.insert(b)
         kb_pods.insert('Отмена')
         await FSMPods.pods.set()
-        await bot.send_message(message.from_user.id, "Помощь на задания",
+        await bot.send_message(message.from_user.id, "Выберите подсказку по названию задания",
                                reply_markup=kb_pods)
     else:
         await bot.send_message(message.from_user.id,

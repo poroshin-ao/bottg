@@ -189,6 +189,12 @@ async def otmena(message: types.Message):
 
 
 def register_handler_admin(dp: Dispatcher):
+    dp.register_message_handler(cancel_handler, state="*", commands=['Отмена'])
+    dp.register_message_handler(cancel_handler, Text(equals='Отмена',
+                                ignore_case=True), state="*")
+    dp.register_message_handler(cancel_handler, Text(equals='Отмена',
+                                ignore_case=True))
+    dp.register_message_handler(cancel_handler, commands=['Отмена'])
     dp.register_message_handler(cm_start, commands=['Добавить_задание'],
                                 state=None)
     dp.register_message_handler(load_name, state=FSMAdmin.name)
@@ -204,10 +210,3 @@ def register_handler_admin(dp: Dispatcher):
                                 state=FSMAdmin.photo)
     dp.register_message_handler(load_text, state=FSMAdmin.text)
     dp.register_message_handler(load_otvet, state=FSMAdmin.otvet)
-    dp.register_message_handler(otmena, commands=['Отмена'])
-    dp.register_message_handler(cancel_handler, state="*", commands=['Отмена'])
-    dp.register_message_handler(cancel_handler, Text(equals='Отмена',
-                                ignore_case=True), state="*")
-    dp.register_message_handler(cancel_handler, Text(equals='Отмена',
-                                ignore_case=True))
-    dp.register_message_handler(cancel_handler, commands=['Отмена'])

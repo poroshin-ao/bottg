@@ -33,7 +33,7 @@ async def quest_menu(message: types.Message):
     kb_quests.insert(b)
 
     await FSMQuests.quest.set()
-    await bot.send_message(message.from_user.id, 'Жмякни на кнопку задания',
+    await bot.send_message(message.from_user.id, 'Выберите задание',
                            reply_markup=kb_quests)
 
 

@@ -8,7 +8,7 @@ async def open_quest(dp: Dispatcher, name: str):
     k = get_keys_users()
     set_open_quest(name)
     for i in k:
-        await bot.send_message(i, f"Открыто задание {name}")
+        await bot.send_message(i, f"Открыто задание {name}. Приступайте.")
     return
 
 
@@ -18,9 +18,9 @@ async def open_pods(dp: Dispatcher, name: str):
     set_open_pods(name)
     for i in k:
         if not a.get(i, None):
-            await bot.send_message(i, f"Открыта подсказка для {name}")
+            await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
         elif not a.get(i).get(name, None):
-            await bot.send_message(i, f"Открыта подсказка для {name}")
+            await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
     return
 
 
@@ -37,7 +37,15 @@ def schedule_add_jobs_pods(name: dict, dat):
     scheduler.add_job(open_pods, "date", run_date=dat1, args=(dp, name))
 
 
+async def last_word(dp: Dispatcher):
+    k = get_keys_users()
+    for i in k:
+        await bot.send_message(i, "Экзамен окончен. Ответы в зачёт больше не принимаются. Если Вы оказались в числе лучших, мы с Вами свяжемся – ждите сообщения в ВК. Ваши личные сообщения должны быть открыты.")
+    return
+
+
 def scheduler_start():
+    scheduler.add_job(open_pods, "date", run_date=datetime.strptime('31/03/23 20:00'))
     q = get_quests()
     k = get_keys_quest()
     for i in k:

@@ -1,4 +1,4 @@
-from bot_space import bot
+from bot_space import bot, info_text
 from aiogram import types, Dispatcher
 from keyboards import kb_client, kb_menu, kb_profile
 from datafunc import exist_id, get_user, get_answer
@@ -14,18 +14,18 @@ async def command_start(message: types.Message):
                                reply_markup=kb_menu)
     else:
         await bot.send_message(message.from_user.id,
-                               "Здесь инфа",
+                               info_text,
                                reply_markup=kb_client)
 
 
 async def command_info(message: types.Message):
     if exist_id(str(message.from_user.id)):
         await bot.send_message(message.from_user.id,
-                               "Здесь инфа",
+                               info_text,
                                reply_markup=kb_menu)
     else:
         await bot.send_message(message.from_user.id,
-                               "Здесь инфа",
+                               info_text,
                                reply_markup=kb_client)
 
 
@@ -41,7 +41,7 @@ async def command_profile(message: types.Message):
             for i in ans:
                 s += f"{i}: {ans.get(i)}\n"
         else:
-            s += "К сожалению в ничего не прошли"
+            s += "У Вас пока нет решённых заданий"
         await bot.send_message(message.from_user.id, s,
                                reply_markup=kb_profile)
     else:
