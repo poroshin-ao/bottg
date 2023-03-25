@@ -45,7 +45,7 @@ async def last_word(dp: Dispatcher):
 
 
 def scheduler_start():
-    scheduler.add_job(open_pods, "date", run_date=datetime.strptime('31/03/23 20:00'))
+    scheduler.add_job(last_word, "date", run_date=datetime.strptime('31/03/23 20:00'))
     q = get_quests()
     k = get_keys_quest()
     for i in k:
