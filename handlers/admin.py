@@ -184,7 +184,8 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 
 async def otmena(message: types.Message):
 
-    await bot.send_message(message.from_user.id, 'Отмена', reply_markup=kb_menu)
+    await bot.send_message(message.from_user.id, 'Отмена', 
+                           reply_markup=kb_menu)
 
 
 def register_handler_admin(dp: Dispatcher):

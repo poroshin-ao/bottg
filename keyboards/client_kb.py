@@ -17,9 +17,9 @@ kb_close.insert(b1)
 kb_menu = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 b1 = KeyboardButton('/Информация')
 b2 = KeyboardButton('/Профиль')
-b3 = KeyboardButton('/Подсказки')
+b3 = KeyboardButton('/Помощь')
 b4 = KeyboardButton('/Задания')
-kb_menu.insert(b1).insert(b2).insert(b3).insert(b4)
+kb_menu.insert(b1).insert(b2).insert(b4).insert(b3)
 
 
 kb_profile = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)

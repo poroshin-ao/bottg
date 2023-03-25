@@ -13,3 +13,5 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot, storage=storage)
 
 scheduler = AsyncIOScheduler()
+
+info_text = ""

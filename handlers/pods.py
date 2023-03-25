@@ -25,11 +25,11 @@ async def pods_menu(message: types.Message):
                 kb_pods.insert(b)
         kb_pods.insert('Отмена')
         await FSMPods.pods.set()
-        await bot.send_message(message.from_user.id, "Подсказки на задания",
+        await bot.send_message(message.from_user.id, "Помощь на задания",
                                reply_markup=kb_pods)
     else:
         await bot.send_message(message.from_user.id,
-                               "Ты круче некуда! Но не зареган!",
+                               "Вы не были зарегистрированны ранее",
                                reply_markup=kb_client)
 
 
@@ -47,9 +47,9 @@ async def print_pods(message: types.Message, state: FSMContext):
                                    "Такое чувство буд-то вы куда-то спешите")
     else:
         await bot.send_message(message.from_user.id,
-                               "Такой задания не существует (если вы попали не туда, нажмите отмена)")
+                               "Такого задания не существует (нажмите отмена)")
 
 
 def register_handlers_pods(dp: Dispatcher):
-    dp.register_message_handler(pods_menu, commands='Подсказки', state=None)
+    dp.register_message_handler(pods_menu, commands='Помощь', state=None)
     dp.register_message_handler(print_pods, state=FSMPods.pods)

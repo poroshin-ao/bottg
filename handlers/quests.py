@@ -17,7 +17,7 @@ class FSMQuests(StatesGroup):
 async def quest_menu(message: types.Message):
     if not exist_id(str(message.from_user.id)):
         await bot.send_message(message.from_user.id,
-                               'Сначала нужно зарегистрироваться',
+                               'Вы не были зарегистрированны ранее',
                                reply_markup=kb_client)
         return
 
@@ -81,7 +81,8 @@ async def quest_insert(message: types.Message, state: FSMContext):
     if message.text.lower() == otvet.lower():
         set_new_correct_answer(str(message.from_user.id), name)
         await state.finish()
-        await bot.send_message(message.from_user.id, 'Ты молодец',
+        await bot.send_message(message.from_user.id, 'Поздравляем, Ваш ответ \
+                               верный.\nПродолжайте в том же духе.',
                                reply_markup=kb_menu)
         return
 
@@ -89,7 +90,8 @@ async def quest_insert(message: types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id, str_to_robot(message.text,
                                                                   otvet))
     else:
-        await bot.send_message(message.from_user.id, 'Ответ не правильный')
+        await bot.send_message(message.from_user.id, 'Ваш ответ \
+                               неверный.\nПопробуйте ещё раз.')
 
 
 def register_handlers_quests(dp: Dispatcher):
