@@ -34,8 +34,7 @@ async def command_profile(message: types.Message):
         user = get_user(str(message.from_user.id))
         s = f"Ваши данные:\n\nФИ: {user.get('famname', None)}\n" + \
             f"Институт: {user.get('institute', None)}\n" + \
-            f"Ссылка на ВК: {user.get('silka', None)}\n\nВремя выполения \
-                заданий:\n"
+            f"Ссылка на ВК: {user.get('silka', None)}\n\nВремя выполения заданий:\n\n"
         ans = get_answer(str(message.from_user.id))
         if ans:
             for i in ans:

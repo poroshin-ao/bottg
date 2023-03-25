@@ -25,8 +25,7 @@ async def reg_start(message: types.Message):
 async def reg_fi(message: types.Message, state: FSMContext):
     if len(message.text) > 40:
         await bot.send_message(message.from_user.id,
-                               'Похоже вы ошиблись в написании своего имени \
-                                и фамилии.\n\nПопробуйте ещё раз')
+                               'Похоже вы ошиблись в написании своего имени и фамилии.\n\nПопробуйте ещё раз')
         return
 
     async with state.proxy() as data:
@@ -40,9 +39,7 @@ async def reg_institute(message: types.Message, state: FSMContext):
         data['institute'] = message.text
     await FSMRegistration.silka.set()
 
-    await bot.send_message(message.from_user.id, 'Введите ссылку вашей \
-                           страницы ВК',
-                           reply_markup=kb_menu)
+    await bot.send_message(message.from_user.id, 'Введите ссылку вашей страницы ВК')
 
 
 async def reg_silka(message: types.Message, state: FSMContext):
