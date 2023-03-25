@@ -95,6 +95,7 @@ def set_open_pods(name: str):
 def delete_quests():
     dj = json.dumps({})
     json.dump(dj, open('quests.json', 'w', encoding='utf-8'))
+    json.dump(dj, open('correct_answer.json', 'w', encoding='utf-8'))
 
 
 def delete_users():
