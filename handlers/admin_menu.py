@@ -25,6 +25,7 @@ async def command_users(message: types.Message):
 
     for i in k:
         s = f"{i}\n{u.get(i).get('famname')}\n{u.get(i).get('institute')}\n\n"
+        s = s + f"{u.get(i).get('silka', None)}\n\n"
         key = ans.get(i)
         if key:
             for a in key.keys():
@@ -56,7 +57,8 @@ async def command_win_users(message: types.Message):
             continue
         if f:
             continue
-        s = f"{i}\n{u.get(i).get('famname')}\n{u.get(i).get('institute')}\n\n"
+        s = f"{i}\n{u.get(i).get('famname')}\n{u.get(i).get('institute')}\n"
+        s = s + f"{u.get(i).get('silka', None)}\n\n"
         if key:
             for a in key.keys():
                 s += f"{a}: {key.get(a,None)}\n"
