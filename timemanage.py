@@ -53,7 +53,7 @@ def scheduler_start():
             schedule_add_jobs(i, datetime.strptime(q.get(i).
                                                    get('date', None),
                                                    time_format))
-        if not q.get(i).get('open_pods', None):
+        if not q.get(i).get('open_pods', None) and q.get(i).get('date', None):
             schedule_add_jobs_pods(i, datetime.strptime(q.get(i).
                                                         get('date', None),
                                                         time_format))
