@@ -8,7 +8,7 @@ async def open_quest(dp: Dispatcher, name: str):
     k = get_keys_users()
     set_open_quest(name)
     for i in k:
-        await bot.send_message(i, f"Открыто задание {name}. Приступайте.")
+        await bot.send_message(i, f"Открыто задание {name}.")
     return
 
 

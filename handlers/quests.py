@@ -68,7 +68,7 @@ async def quest(message: types.Message, state: FSMContext):
         data['name'] = message.text
 
     await FSMQuests.quest_insert.set()
-    await bot.send_message(message.from_user.id, 'Напиши ответ',
+    await bot.send_message(message.from_user.id, 'Введите ответ',
                            reply_markup=kb_close)
 
 
@@ -81,8 +81,7 @@ async def quest_insert(message: types.Message, state: FSMContext):
     if message.text.lower() == otvet.lower():
         set_new_correct_answer(str(message.from_user.id), name)
         await state.finish()
-        await bot.send_message(message.from_user.id, 'Поздравляем, Ваш ответ \
-                               верный.\nПродолжайте в том же духе.',
+        await bot.send_message(message.from_user.id, 'Поздравляем, Ваш ответ верный.\nПродолжайте в том же духе.',
                                reply_markup=kb_menu)
         return
 
@@ -90,8 +89,7 @@ async def quest_insert(message: types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id, str_to_robot(message.text,
                                                                   otvet))
     else:
-        await bot.send_message(message.from_user.id, 'Ваш ответ \
-                               неверный.\nПопробуйте ещё раз.')
+        await bot.send_message(message.from_user.id, 'Ваш ответ неверный.\nПопробуйте ещё раз.')
 
 
 def register_handlers_quests(dp: Dispatcher):

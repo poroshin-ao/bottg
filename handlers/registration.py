@@ -18,7 +18,7 @@ async def reg_start(message: types.Message):
                                'Вы уже были зарегистрированны!')
         return
     await FSMRegistration.famname.set()
-    await bot.send_message(message.from_user.id, 'Напиши своё имя и фамилию',
+    await bot.send_message(message.from_user.id, 'Введите своё имя и фамилию',
                            reply_markup=kb_close)
 
 
@@ -31,7 +31,7 @@ async def reg_fi(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['famname'] = message.text
     await FSMRegistration.next()
-    await bot.send_message(message.from_user.id, 'Напиши свой институт')
+    await bot.send_message(message.from_user.id, 'Введите свой институт')
 
 
 async def reg_institute(message: types.Message, state: FSMContext):
@@ -39,7 +39,7 @@ async def reg_institute(message: types.Message, state: FSMContext):
         data['institute'] = message.text
     await FSMRegistration.silka.set()
 
-    await bot.send_message(message.from_user.id, 'Введите ссылку вашей страницы ВК')
+    await bot.send_message(message.from_user.id, 'Введите вашу ссылку на страницу в ВК')
 
 
 async def reg_silka(message: types.Message, state: FSMContext):
@@ -59,7 +59,7 @@ async def reg_rereg(message: types.Message, state: FSMContext):
                                'Вы не были зарегистрированны ранее')
         return
     await FSMRegistration.famname.set()
-    await bot.send_message(message.from_user.id, 'Напиши своё имя и фамилию',
+    await bot.send_message(message.from_user.id, 'Введите своё имя и фамилию',
                            reply_markup=kb_close)
 
 
