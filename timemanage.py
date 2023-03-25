@@ -37,7 +37,7 @@ def schedule_add_jobs_pods(name: dict, dat):
     scheduler.add_job(open_pods, "date", run_date=dat1, args=(dp, name))
 
 
-async def last_word(dp: Dispatcher):
+async def last_word():
     k = get_keys_users()
     for i in k:
         await bot.send_message(i, "Экзамен окончен. Ответы в зачёт больше не принимаются. Если Вы оказались в числе лучших, мы с Вами свяжемся – ждите сообщения в ВК. Ваши личные сообщения должны быть открыты.")
