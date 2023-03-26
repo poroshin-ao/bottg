@@ -1,5 +1,6 @@
 import json
 import datetime
+from datetime import timedelta
 
 
 def get_users():
@@ -70,7 +71,7 @@ def get_answer(id: str):
 def set_new_correct_answer(id: str, name: str):
     d = get_answers()
     u = d.get(id, None)
-    now = datetime.datetime.now()
+    now = datetime.datetime.now() + timedelta(hours=4)
     t = now.strftime("%Y-%m-%d %H:%M:%S")
     if u:
         if u.get(name, None):
