@@ -2,13 +2,17 @@ from bot_space import dp, scheduler, Dispatcher, time_format, bot
 from datetime import datetime, timedelta
 from datafunc import get_quests, get_keys_quest, get_keys_users, set_open_quest
 from datafunc import set_open_pods, get_answers
+from aiogram.utils.exceptions import BotBlocked
 
 
 async def open_quest(dp: Dispatcher, name: str):
     k = get_keys_users()
     set_open_quest(name)
     for i in k:
-        await bot.send_message(i, f"Открыто задание {name}.")
+        try:
+            await bot.send_message(i, f"Открыто задание {name}.")
+        except BotBlocked:
+            print(f"{i} заблокировал бота")
     return
 
 
@@ -17,10 +21,13 @@ async def open_pods(dp: Dispatcher, name: str):
     k = get_keys_users()
     set_open_pods(name)
     for i in k:
-        if not a.get(i, None):
-            await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
-        elif not a.get(i).get(name, None):
-            await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
+        try:
+            if not a.get(i, None):
+                await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
+            elif not a.get(i).get(name, None):
+                await bot.send_message(i, f"Теперь вы можете воспользоваться подсказкой для задания {name}")
+        except BotBlocked:
+            print(f"{i} заблокировал бота")
     return
 
 
@@ -40,7 +47,10 @@ def schedule_add_jobs_pods(name: dict, dat):
 async def last_word():
     k = get_keys_users()
     for i in k:
-        await bot.send_message(i, "Экзамен окончен. Ответы в зачёт больше не принимаются. Если Вы оказались в числе лучших, мы с Вами свяжемся – ждите сообщения в ВК. Ваши личные сообщения должны быть открыты.")
+        try:
+            await bot.send_message(i, "Экзамен окончен. Ответы в зачёт больше не принимаются. Если Вы оказались в числе лучших, мы с Вами свяжемся – ждите сообщения в ВК. Ваши личные сообщения должны быть открыты.")
+        except BotBlocked:
+            print(f"{i} заблокировал бота")
     return
 
 
